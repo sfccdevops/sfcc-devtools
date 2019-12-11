@@ -1,0 +1,42 @@
+{
+  "name": "sfcc-devtools",
+  "version": "1.0.0",
+  "description": "Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.",
+  "author": "Red van Workshop",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "browser",
+    "extension",
+    "chrome",
+    "firefox",
+    "opera",
+    "salesforce",
+    "commerce-cloud",
+    "demandware",
+    "development",
+    "sandbox",
+    "devtools",
+    "web-inspector"
+  ],
+  "scripts": {
+    "test": "npm run -s lint",
+    "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter src && echo '\n【ツ】CODE FORMATTING PERFECTION !!!\n'",
+    "pack": "npm run -s pack:webkit && npm run -s pack:firefox",
+    "pack:webkit": "crx pack src -o dist/sfcc-devtools.crx -p key.pem",
+    "pack:firefox": "cd src && jszip -c ../jszip.json"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "crx": "^5.0.1",
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jszip-cli": "^1.4.24"
+  }
+}
