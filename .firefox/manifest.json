@@ -12,8 +12,6 @@
     "128": "icons/128.png"
   },
   "permissions": [
-    "*://*.demandware.net/*",
-    "http://localhost:60606/*"
-  ],
-  "content_security_policy": "script-src 'self' http://localhost:60606; object-src 'self'"
+    "*://*.demandware.net/*"
+  ]
 }

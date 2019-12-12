@@ -2,7 +2,7 @@
 
 > Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.
 
-# ![sfcc-devtool-demo](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-demo.gif)
+# ![sfcc-devtool-demo](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-demo.gif?v=1.0.0)
 
 [Red Van Workshop](https://redvanworkshop.com) is a Salesforce Commerce Cloud Certified Partner.  We built this Extension to connect the Browsers Web Inspector to VS Code, Eclipse & Business Manager. We hope you will find it as useful as we do, and if you want to help make it better, we'd love to hear from you.
 
@@ -28,12 +28,12 @@ _( Opera can use Chrome Extension )_
 #### Once Installed:
 
 1. Open Developer Console / Web Inspector in Browser
-2. Select `Elements` Tab
+2. Select `Elements`/`Inspector` Tab
 3. Select `SFCC` Tab in Side Panel
 
-# ![sfcc-devtool-enable](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-enable.gif)
+# ![sfcc-devtool-enable](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-enable.gif?v=1.0.0)
 
-Now you're ready to go. In your `Elements` Tab, click on an SFCC comment block, like one of the examples below. This extension will convert the comment into links that allow you to interact with the SFCC resource.
+Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC comment block, like one of the examples below. This extension will convert the comment into links that allow you to interact with the SFCC resource.
 
 ```
 <!-- dwMarker="content" dwContentID="8a6c155cee595360a96c5ac853" -->
@@ -119,9 +119,9 @@ npm run pack
 <details><summary>Load Unpacked Extension to Opera</summary>
 
 1. Open Google Chrome
-2. Go to the following URL in a new tab:  `chrome://extensions/`
+2. Go to the following URL in a new tab:  `chrome://extensions`
 3. In the top right corner, Enable **Developer Mode**
-4. Click the **Load Unpacked Extension ...**
+4. Click the **Load Unpacked** button
 5. Select the `./sfcc-devtools/src` folder
 
 </details>
@@ -139,4 +139,8 @@ npm run pack
 
 > `OPEN IN EDITOR` button does not work
 
-Make sure you have either VS Code or Eclipse running, with your SFCC project opened. The `http://localhost:60606/target=/` links are handled by either of these apps ( assuming you have them setup for SFCC development ).
+# ![sfcc-devtool-error](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-error.gif?v=1.0.0)
+
+**SOLUTION:** Make sure you have either [VS Code w/ Prophet Debugger](https://marketplace.visualstudio.com/items?itemName=SqrTT.prophet) or [Eclipse w/ UX Studio](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2FSiteDevelopment%2FInstallUXStudio.html) running, with your SFCC project opened.
+
+**Firefox Users:** You likely see an error page in your browser, rather than the fancy error message in your SFCC Side Panel. The same solution applies to Firefox. We are just required to open `localhost` links in a new browser tab as Firefox blocks access to adding `http://localhost:60606` to `content_security_policy`, which is needed, in this case, to open the file in the background ( like in Google Chrome ).

@@ -22,7 +22,7 @@
   "scripts": {
     "test": "npm run -s lint",
     "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter src && echo '\n【ツ】CODE FORMATTING PERFECTION !!!\n'",
-    "pack": "npm run -s pack:webkit && npm run -s pack:firefox",
+    "pack": "npm run -s test && npm run -s pack:webkit && npm run -s pack:firefox",
     "pack:webkit": "crx pack src -o dist/sfcc-devtools.crx -p key.pem",
     "pack:firefox": "cd src && jszip -c ../jszip.json"
   },

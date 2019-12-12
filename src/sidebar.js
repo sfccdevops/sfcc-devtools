@@ -1,6 +1,86 @@
 (() => {
   'use strict'
 
+  const bindEvents = () => {
+    let timeout
+
+    const $controller = document.getElementById('open-controller')
+    const $template = document.getElementById('open-template')
+    const $error = document.getElementById('error')
+
+    const showError = (target, err) => {
+      clearTimeout(timeout)
+
+      target.classList.add('error')
+      target.classList.remove('loading')
+      target.classList.remove('success')
+
+      $error.style.display = 'block'
+
+      console.error(err)
+    }
+
+    const openIDE = evt => {
+      evt.preventDefault()
+
+      const $target = evt.target
+
+      if (!$target) {
+        return
+      }
+
+      // Check if this is FireFox as it will not allow AJAX calls to `http://localhost`
+      if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+        window.open($target.href, 'ide')
+        return
+      }
+
+      // For Chrome we can do a little more elegant opening of files
+      $target.classList.add('loading')
+      $target.classList.remove('error')
+      $target.classList.remove('success')
+
+      $error.style.display = 'none'
+
+      const ajax = new XMLHttpRequest()
+
+      try {
+        ajax.open('GET', $target.href, true)
+        ajax.onreadystatechange = () => {
+          if (ajax.readyState === 4) {
+            clearTimeout(timeout)
+
+            $target.classList.remove('loading')
+            $target.classList.add('success')
+
+            timeout = setTimeout(() => {
+              $target.classList.remove('success')
+            }, 3000)
+          }
+        }
+
+        ajax.onerror = err => {
+          showError($target, err.target)
+        }
+
+        ajax.send()
+      } catch (err) {
+        showError($target, err.target)
+      }
+    }
+
+    // Unbind / Bind Click events for IDE Buttons
+    if ($controller) {
+      $controller.removeEventListener('click', openIDE)
+      $controller.addEventListener('click', openIDE)
+    }
+
+    if ($template) {
+      $template.removeEventListener('click', openIDE)
+      $template.addEventListener('click', openIDE)
+    }
+  }
+
   /**
    * Convert SFCC Marker to Title
    * @param {string} title
@@ -30,13 +110,13 @@
     // This has a Pipeline or Controller
     if (props.pipeline) {
       html = html.concat(`<h2>${getLabel(props.pipeline.ide ? props.pipeline.ide.split(/(\\|\/)/g).pop() : props.pipeline.title)}</h2>`)
-      html = html.concat(`<a class="button" href="${props.pipeline.ide}" target="_blank">Open in Editor</a>`)
+      html = html.concat(`<a class="button" id="open-controller" href="${props.pipeline.ide}" target="_blank">Open in Editor</a>`)
     }
 
     // This has a Template
     if (props.template) {
       html = html.concat(`<h2>${getLabel(props.template.ide.split(/(\\|\/)/g).pop())}</h2>`)
-      html = html.concat(`<a class="button" href="${props.template.ide}" target="_blank">Open in Editor</a>`)
+      html = html.concat(`<a class="button" id="open-template" href="${props.template.ide}" target="_blank">Open in Editor</a>`)
     }
 
     // This is a Content Slot
@@ -138,6 +218,7 @@
 
             if (info) {
               $sidebar.innerHTML = generateSidebar(info, domain, siteID)
+              bindEvents()
             } else {
               $sidebar.innerHTML = '<i>No SFCC Comment Selected</i>'
             }

@@ -1,12 +1,12 @@
 {
   "entities": [
+    { "name": "../.firefox", "root": true },
     "icons",
     "browser-polyfill.js",
     "devtools.html",
     "devtools.js",
     "sidebar.html",
-    "sidebar.js",
-    "manifest.json"
+    "sidebar.js"
   ],
   "options": {
     "output": "../dist/sfcc-devtools.zip"
