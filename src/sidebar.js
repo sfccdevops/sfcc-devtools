@@ -122,8 +122,10 @@
     // This is a Content Slot
     if (props.type === 'slot' && props.id && domain && siteID) {
       const context = (props.context) ? props.context : 'null'
+      const contextId = (props.contextId) ? props.contextId : 'null'
+
       html = html.concat(`<h2>ID:&nbsp; <span>${props.id}</span></h2>`)
-      html = html.concat(`<a class="button" href="https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=null&Site=${siteID}" target="_blank">Open in Business Manager</a>`)
+      html = html.concat(`<a class="button" href="https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteID}" target="_blank">Open in Business Manager</a>`)
     }
 
     // This is a Content Asset
@@ -255,6 +257,7 @@
     // Check that we have a match
     if (match) {
       const context = getProp(comment, 'dwContext')
+      const contextId = getProp(comment, 'dwContextID')
       const controller = getProp(comment, 'dwIsController')
       const id = getProp(comment, 'dwContentID')
       const pipelineTitle = getProp(comment, 'dwPipelineTitle')
@@ -270,6 +273,11 @@
       // Set SFCC Context
       if (context) {
         sfccProps.context = context
+      }
+
+      // Set SFCC Context ID
+      if (contextId) {
+        sfccProps.contextId = contextId
       }
 
       // Set SFCC Controller
