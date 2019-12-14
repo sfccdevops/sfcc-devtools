@@ -14,8 +14,6 @@
 - [X] Open Content Slots and Content Assets in Business Manager
 - [X] Supports Light & Dark Themes
 
-**NOTE:** This Extension is only enabled on `"*://*.demandware.net/*"` domains.
-
 ## Installation
 
 > Select your browser:
@@ -141,6 +139,6 @@ npm run pack
 
 # ![sfcc-devtool-error](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-error.gif?v=1.0.0)
 
-**SOLUTION:** Make sure you have either [VS Code w/ Prophet Debugger](https://marketplace.visualstudio.com/items?itemName=SqrTT.prophet) or [Eclipse w/ UX Studio](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2FSiteDevelopment%2FInstallUXStudio.html) running, with your SFCC project opened.
+**SOLUTION:** Make sure you have either [VS Code w/ Prophet Debugger](https://marketplace.visualstudio.com/items?itemName=SqrTT.prophet) or [Eclipse w/ UX Studio](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2FSiteDevelopment%2FInstallUXStudio.html) running, with your SFCC project opened.  Once you've opened your SFCC project, re-clicking the button should correctly open the file.
 
 **Firefox Users:** You likely see an error page in your browser, rather than the fancy error message in your SFCC Side Panel. The same solution applies to Firefox. We are just required to open `localhost` links in a new browser tab as Firefox blocks access to adding `http://localhost:60606` to `content_security_policy`, which is needed, in this case, to open the file in the background ( like in Google Chrome ).

@@ -3,7 +3,7 @@
   "name": "SFCC DevTools",
   "version": "1.0.0",
   "description": "Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.",
-  "author": "Red van Workshop",
+  "author": "Red Van Workshop",
   "devtools_page": "devtools.html",
   "homepage_url": "https://github.com/redvanworkshop/sfcc-devtools",
   "icons": {
@@ -12,6 +12,6 @@
     "128": "icons/128.png"
   },
   "permissions": [
-    "*://*.demandware.net/*"
+    "https://*/*"
   ]
 }
