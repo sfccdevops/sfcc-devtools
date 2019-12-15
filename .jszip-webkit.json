@@ -1,0 +1,15 @@
+{
+  "entities": [
+    "_locales",
+    "icons",
+    "browser-polyfill.js",
+    "devtools.html",
+    "devtools.js",
+    "sidebar.html",
+    "sidebar.js",
+    "manifest.json"
+  ],
+  "options": {
+    "output": "../dist/sfcc-devtools-webkit.zip"
+  }
+}

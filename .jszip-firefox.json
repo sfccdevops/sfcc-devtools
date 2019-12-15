@@ -1,0 +1,15 @@
+{
+  "entities": [
+    { "name": "../.firefox", "root": true },
+    "_locales",
+    "icons",
+    "browser-polyfill.js",
+    "devtools.html",
+    "devtools.js",
+    "sidebar.html",
+    "sidebar.js"
+  ],
+  "options": {
+    "output": "../dist/sfcc-devtools-firefox.zip"
+  }
+}
