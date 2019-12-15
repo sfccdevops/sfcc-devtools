@@ -8,17 +8,17 @@
 
 ## Features
 
-- [X] Works on Chrome, Firefox & Opera
+- [X] Uses dwMarker HTML Comments
 - [X] Adds new `SFCC` Side Panel to `Elements` Panel
-- [X] Open SFCC Resources ( ISML, Pipelines & Controllers ) in VS Code / Eclipse
-- [X] Open Content Slots and Content Assets in Business Manager
+- [X] Open ISML, Pipelines & Controllers in VS Code / Eclipse
+- [X] Open Content Slots & Assets in Business Manager
 - [X] Supports Light & Dark Themes
 
 ## Installation
 
 > Select your browser:
 
-[![Install Chrome](https://img.shields.io/badge/Install-Chrome-blue.svg?style=for-the-badge)](https://chrome.google.com/webstore/detail/sfcc-devtools/fiooakiedinjpajpckadfbanihpfaflb)
+[![Install Chrome](https://img.shields.io/badge/Install-Chrome-blue.svg?style=for-the-badge)](https://chrome.google.com/webstore/detail/sfcc-devtools/gdgdeiakmgocieipdpdaidanjbcchdka)
 [![Install Firefox](https://img.shields.io/badge/Install-Firefox-orange.svg?style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/sfcc-devtools/)
 
 _( Opera can use Chrome Extension )_
@@ -142,3 +142,9 @@ npm run pack
 **SOLUTION:** Make sure you have either [VS Code w/ Prophet Debugger](https://marketplace.visualstudio.com/items?itemName=SqrTT.prophet) or [Eclipse w/ UX Studio](https://documentation.b2c.commercecloud.salesforce.com/DOC1/index.jsp?topic=%2Fcom.demandware.dochelp%2FSiteDevelopment%2FInstallUXStudio.html) running, with your SFCC project opened.  Once you've opened your SFCC project, re-clicking the button should correctly open the file.
 
 **Firefox Users:** You likely see an error page in your browser, rather than the fancy error message in your SFCC Side Panel. The same solution applies to Firefox. We are just required to open `localhost` links in a new browser tab as Firefox blocks access to adding `http://localhost:60606` to `content_security_policy`, which is needed, in this case, to open the file in the background ( like in Google Chrome ).
+
+
+Disclaimer
+===
+
+The trademarks and product names of Salesforce®, including the mark Salesforce®, are the property of Salesforce.com. Red Van Workshop is not affiliated with Salesforce.com, nor does Salesforce.com sponsor or endorse the Red Van Workshop products or website. Use of the Salesforce®, trademark on this project does not indicate an endorsement, recommendation or business relationship between Salesforce.com, and Red Van Workshop.
