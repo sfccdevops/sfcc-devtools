@@ -10,6 +10,6 @@
     "sidebar.js"
   ],
   "options": {
-    "output": "../dist/sfcc-devtools.zip"
+    "output": "../dist/sfcc-devtools-firefox.zip"
   }
 }

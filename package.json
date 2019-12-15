@@ -34,9 +34,9 @@
   "scripts": {
     "test": "npm run -s lint",
     "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter src && echo '\n【ツ】CODE FORMATTING PERFECTION !!!\n'",
-    "pack": "npm run -s test && npm run -s pack:webkit && npm run -s pack:firefox",
-    "pack:webkit": "crx pack src -o dist/sfcc-devtools.crx -p key.pem",
-    "pack:firefox": "cd src && jszip -c ../jszip.json"
+    "pack": "npm run -s test && npm run -s pack:webkit && npm run -s pack:firefox && echo '\n★ ALL DONE\n'",
+    "pack:webkit": "crx pack src -o dist/sfcc-devtools-webkit.crx -p key.pem && cd src && jszip -c ../.jszip-webkit.json &> /dev/null && echo '✓ WebKit Extension Created'",
+    "pack:firefox": "cd src && jszip -c ../.jszip-firefox.json &> /dev/null && echo '✓ Firefox Addon Created'"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
