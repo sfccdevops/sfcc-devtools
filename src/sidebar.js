@@ -9,15 +9,15 @@
     const $error = document.getElementById('error')
 
     const showError = (target, err) => {
-      clearTimeout(timeout)
+      if (target && err) {
+        clearTimeout(timeout)
 
-      target.classList.add('error')
-      target.classList.remove('loading')
-      target.classList.remove('success')
+        target.classList.add('error')
+        target.classList.remove('loading')
+        target.classList.remove('success')
 
-      $error.style.display = 'block'
-
-      console.error(err)
+        $error.style.display = 'block'
+      }
     }
 
     const openIDE = evt => {
@@ -236,9 +236,9 @@
       }
     }
 
-    // Use inspector to parse DOM and return node if Comment Block ( nodeType === 8 )
+    // Use inspector to parse DOM and return node if Comment Block
     if (browser.devtools) {
-      browser.devtools.inspectedWindow.eval(`{ const node = $0; node.nodeType === 8 && node.nodeValue; }`).then(selectedElement, onError)
+      browser.devtools.inspectedWindow.eval(`{ const node = $0; node.nodeType === Node.COMMENT_NODE && node.nodeValue; }`).then(selectedElement, onError)
     }
   }
 

@@ -5,6 +5,10 @@
   "author": "Red van Workshop",
   "license": "MIT",
   "private": false,
+  "engines": {
+    "node": ">= 8.12.0",
+    "npm": ">= 6.4.0"
+  },
   "keywords": [
     "browser",
     "extension",
@@ -19,6 +23,14 @@
     "devtools",
     "web-inspector"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redvanworkshop/sfcc-devtools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redvanworkshop/sfcc-devtools/issues",
+    "email": "peter@redvanworkshop.com"
+  },
   "scripts": {
     "test": "npm run -s lint",
     "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter src && echo '\n【ツ】CODE FORMATTING PERFECTION !!!\n'",
