@@ -1,6 +1,7 @@
 {
   "entities": [
     { "name": "../.firefox", "root": true },
+    "_locales",
     "icons",
     "browser-polyfill.js",
     "devtools.html",

@@ -1,0 +1,54 @@
+{
+  "extensionName": {
+    "message": "SFCC DevTools",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.",
+    "description": "Description of the extension."
+  },
+  "errorFile": {
+    "message": "Unable to open file",
+    "description": "Message shown when IDE fails to open file."
+  },
+  "getHelp": {
+    "message": "Get Help",
+    "description": "Button text for Get Help."
+  },
+  "labelContentAsset": {
+    "message": "Content Asset",
+    "description": "Label for Content Asset"
+  },
+  "labelContentSlot": {
+    "message": "Content Slot",
+    "description": "Label for Content Slot"
+  },
+  "labelController": {
+    "message": "Controller",
+    "description": "Label for Controller"
+  },
+  "labelID": {
+    "message": "ID",
+    "description": "Label for ID"
+  },
+  "labelLocalInclude": {
+    "message": "Local Include",
+    "description": "Label for Local Include"
+  },
+  "labelRemoteInclude": {
+    "message": "Remote Include",
+    "description": "Label for Remote Include"
+  },
+  "labelTemplate": {
+    "message": "Template",
+    "description": "Label for Template"
+  },
+  "openInBM": {
+    "message": "Open in Business Manager",
+    "description": "Button Text for Open in Business Manager"
+  },
+  "openInIDE": {
+    "message": "Open in Editor",
+    "description": "Button Text for Open in Editor"
+  }
+}

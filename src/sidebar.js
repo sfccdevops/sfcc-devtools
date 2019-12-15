@@ -1,6 +1,9 @@
 (() => {
   'use strict'
 
+  /**
+   * Bind Event Listeners
+   */
   const bindEvents = () => {
     let timeout
 
@@ -90,10 +93,12 @@
       return
     }
 
-    title = title.replace('linclude', 'Local Include')
-      .replace('rinclude', 'Remote Include')
-      .replace('content', 'Content Asset')
-      .replace('slot', 'Content Slot')
+    if (browser.i18n) {
+      title = title.replace('linclude', browser.i18n.getMessage('labelLocalInclude'))
+        .replace('rinclude', browser.i18n.getMessage('labelRemoteInclude'))
+        .replace('content', browser.i18n.getMessage('labelContentAsset'))
+        .replace('slot', browser.i18n.getMessage('labelContentSlot'))
+    }
 
     return title
   }
@@ -107,31 +112,37 @@
   const generateSidebar = (props, domain, siteID) => {
     let html = `<h1>${cleanTitle(props.type)}</h1>`
 
+    const openInIDE = (browser.i18n) ? browser.i18n.getMessage('openInIDE') : 'Open in Editor'
+    const openInBM = (browser.i18n) ? browser.i18n.getMessage('openInBM') : 'Open in Business Manager'
+
     // This has a Pipeline or Controller
     if (props.pipeline) {
       html = html.concat(`<h2>${getLabel(props.pipeline.ide ? props.pipeline.ide.split(/(\\|\/)/g).pop() : props.pipeline.title)}</h2>`)
-      html = html.concat(`<a class="button" id="open-controller" href="${props.pipeline.ide}" target="_blank">Open in Editor</a>`)
+      html = html.concat(`<a class="button" id="open-controller" href="${props.pipeline.ide}" target="_blank">${openInIDE}</a>`)
     }
 
     // This has a Template
     if (props.template) {
       html = html.concat(`<h2>${getLabel(props.template.ide.split(/(\\|\/)/g).pop())}</h2>`)
-      html = html.concat(`<a class="button" id="open-template" href="${props.template.ide}" target="_blank">Open in Editor</a>`)
+      html = html.concat(`<a class="button" id="open-template" href="${props.template.ide}" target="_blank">${openInIDE}</a>`)
     }
 
     // This is a Content Slot
     if (props.type === 'slot' && props.id && domain && siteID) {
       const context = (props.context) ? props.context : 'null'
       const contextId = (props.contextId) ? props.contextId : 'null'
+      const slotURL = `https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteID}`
 
-      html = html.concat(`<h2>ID:&nbsp; <span>${props.id}</span></h2>`)
-      html = html.concat(`<a class="button" href="https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteID}" target="_blank">Open in Business Manager</a>`)
+      html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
+      html = html.concat(`<a class="button" href="${slotURL}" target="_blank">${openInBM}</a>`)
     }
 
     // This is a Content Asset
     if (props.type === 'content' && props.id && domain) {
-      html = html.concat(`<h2>ID:&nbsp; <span>${props.id}</span></h2>`)
-      html = html.concat(`<a class="button" href="https://${domain}/on/demandware.store/Sites-Site/default/ViewLibraryContent_52-Start?ContentUUID=${props.id}" target="_blank">Open in Business Manager</a>`)
+      const assetURL = `https://${domain}/on/demandware.store/Sites-Site/default/ViewLibraryContent_52-Start?ContentUUID=${props.id}`
+
+      html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
+      html = html.concat(`<a class="button" href="${assetURL}" target="_blank">${openInBM}</a>`)
     }
 
     return html
@@ -142,17 +153,20 @@
    * @param {string} title
    */
   const getLabel = title => {
-    var ext = title.split('.').pop()
+    const ext = title.split('.').pop()
+    const controller = (browser.i18n) ? browser.i18n.getMessage('labelController') : 'Controller'
+    const template = (browser.i18n) ? browser.i18n.getMessage('labelTemplate') : 'Template'
+    const id = (browser.i18n) ? browser.i18n.getMessage('labelID') : 'ID'
 
     if (ext === 'js' || title.indexOf('.js&') > -1) {
-      return `Controller:&nbsp; <span>${title.replace('.js&amp;start=', '&nbsp;&rarr;&nbsp; ')}</span>`
+      return `${controller}:&nbsp; <span>${title.replace('.js&amp;start=', '&nbsp;&rarr;&nbsp; ')}</span>`
     }
 
     if (ext === 'isml') {
-      return `Template:&nbsp; <span>${title}</span>`
+      return `${template}:&nbsp; <span>${title}</span>`
     }
 
-    return `Title:&nbsp; <span>${title}</span>`
+    return `${id}:&nbsp; <span>${title}</span>`
   }
 
   /**
@@ -182,6 +196,19 @@
     var match = comment.match(regex)
 
     return (match) ? match[1] : null
+  }
+
+  /**
+   * Parse HTML for `data-locate` data attributes and replace with locale text
+   */
+  const i18n = () => {
+    if (browser.i18n) {
+      const $messages = document.querySelectorAll('[data-locale]')
+
+      $messages.forEach(message => {
+        message.textContent = browser.i18n.getMessage(message.dataset.locale)
+      })
+    }
   }
 
   /**
@@ -324,5 +351,8 @@
 
     // Initialize Selection
     inspect()
+
+    // Update Locale
+    i18n()
   }
 })()

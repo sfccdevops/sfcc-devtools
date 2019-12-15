@@ -1,11 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "SFCC DevTools",
+  "name": "__MSG_extensionName__",
   "version": "1.0.0",
-  "description": "Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.",
+  "description": "__MSG_extensionDescription__",
   "author": "Red Van Workshop",
   "devtools_page": "devtools.html",
   "homepage_url": "https://github.com/redvanworkshop/sfcc-devtools",
+  "default_locale": "en",
   "icons": {
     "16": "icons/16.png",
     "48": "icons/48.png",
