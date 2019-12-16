@@ -20,8 +20,9 @@
 
 [![Install Chrome](https://img.shields.io/badge/Install-Chrome-blue.svg?style=for-the-badge)](https://chrome.google.com/webstore/detail/sfcc-devtools/gdgdeiakmgocieipdpdaidanjbcchdka)
 [![Install Firefox](https://img.shields.io/badge/Install-Firefox-orange.svg?style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/sfcc-devtools/)
+[![Install Opera](https://img.shields.io/badge/Install-Opera-red.svg?style=for-the-badge)](https://addons.opera.com/en/extensions/details/sfcc-devtools/)
 
-_( Opera can use Chrome Extension )_
+_( Opera Users will need Developer / Beta versions of Opera while our extension is pending review or they can use our Chrome Extension. )_
 
 #### Once Installed:
 
