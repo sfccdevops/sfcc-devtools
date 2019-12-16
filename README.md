@@ -50,7 +50,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 <details><summary>Add to Google Chrome</summary>
 
-1. Download [Webkit Extension](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools.crx)
+1. Download [Webkit Extension](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools-webkit.crx)
 2. Click **Keep** when prompted to download the file
 3. Go to the following URL in a new Google Chrome tab:  `chrome://extensions`
 4. In the top right corner, Enable **Developer Mode**
@@ -60,7 +60,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 <details><summary>Add to Firefox</summary>
 
-1. Download [Firefox Addon](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools.zip)
+1. Download [Firefox Addon](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools-firefox.zip)
 2. Open Firefox
 3. Go to the following URL in a new tab:  `about:debugging#/runtime/this-firefox`
 4. In the top right corner, Click **Load Temporary Add-on...**
@@ -70,7 +70,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 <details><summary>Add to Opera</summary>
 
-1. Download [Webkit Extension](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools.crx)
+1. Download [Webkit Extension](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools-webkit.crx)
 2. Go to the following URL in a new Opera tab:  `chrome://extensions`
 3. In the top right corner, Enable **Developer Mode**
 4. Drag and Drop `./dist/sfcc-devtools-webkit.crx` file into Extension page
