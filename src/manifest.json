@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "__MSG_extensionDescription__",
   "author": "Red Van Workshop",
   "devtools_page": "devtools.html",
@@ -13,7 +13,7 @@
     "128": "icons/128.png"
   },
   "permissions": [
-    "https://*/*",
+    "activeTab",
     "http://localhost:60606/*"
   ],
   "content_security_policy": "script-src 'self' http://localhost:60606; object-src 'self'"
