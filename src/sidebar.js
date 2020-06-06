@@ -239,8 +239,8 @@
           if (location && typeof location[0] !== 'undefined') {
             const url = new URL(location[0])
             const domain = url.hostname
-            const match = url.pathname.match(/\/s\/([a-zA-Z0-9_-]+)\/*/)
-            const siteID = (match) ? match[1] : null
+            const match = url.pathname.match(/\/(s|demandware\.store|store)\/([a-zA-Z0-9_-]+)\/*/)
+            const siteID = (match) ? match[2] : null
 
             // Parse Comment & Update Side Bar
             const info = parseCommentInfo(result)
