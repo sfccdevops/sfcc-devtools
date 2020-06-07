@@ -134,7 +134,7 @@
       const slotURL = `https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteId}`
 
       html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
-      html = html.concat(`<a class="button" href="${slotURL}" target="_blank">${openInBM}</a>`)
+      html = html.concat(`<a class="button primary" href="${slotURL}" target="_blank">${openInBM}</a><a class="button dropdown" data-dropdown="slot-list">▾</a>`)
     }
 
     // This is a Content Asset
@@ -142,7 +142,7 @@
       const assetURL = `https://${domain}/on/demandware.store/Sites-Site/default/ViewLibraryContent_52-Start?ContentUUID=${props.id}`
 
       html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
-      html = html.concat(`<a class="button" href="${assetURL}" target="_blank">${openInBM}</a>`)
+      html = html.concat(`<a class="button primary" href="${assetURL}" target="_blank">${openInBM}</a><a class="button dropdown" data-dropdown="asset-list">▾</a>`)
     }
 
     return html
