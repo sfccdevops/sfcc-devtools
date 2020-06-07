@@ -107,9 +107,9 @@
    * Generate HTML for Sidebar using Props parsed from Comment
    * @param {string} props
    * @param {string} domain
-   * @param {string} siteID
+   * @param {string} siteId
    */
-  const generateSidebar = (props, domain, siteID) => {
+  const generateSidebar = (props, domain, siteId) => {
     let html = `<h1>${cleanTitle(props.type)}</h1>`
 
     const openInIDE = (browser.i18n) ? browser.i18n.getMessage('openInIDE') : 'Open in Editor'
@@ -128,10 +128,10 @@
     }
 
     // This is a Content Slot
-    if (props.type === 'slot' && props.id && domain && siteID) {
+    if (props.type === 'slot' && props.id && domain && siteId) {
       const context = (props.context) ? props.context : 'null'
       const contextId = (props.contextId) ? props.contextId : 'null'
-      const slotURL = `https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteID}`
+      const slotURL = `https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteId}`
 
       html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
       html = html.concat(`<a class="button" href="${slotURL}" target="_blank">${openInBM}</a>`)
@@ -232,34 +232,40 @@
       // Cache Sidebar DOM Selection
       const $sidebar = document.getElementById('sidebar')
 
+      const invalidComment = (browser.i18n) ? browser.i18n.getMessage('invalidComment') : 'No SFCC Comment Selected'
+
       // Check if we have a result from our selection
       if (result) {
         // Before we use the result, get some details about the page we're on
-        const getPageInfo = location => {
-          if (location && typeof location[0] !== 'undefined') {
-            const url = new URL(location[0])
-            const domain = url.hostname
-            const match = url.pathname.match(/\/(s|demandware\.store|store)\/([a-zA-Z0-9_-]+)\/*/)
-            const siteID = (match) ? match[2] : null
+        const getPageInfo = data => {
+          const page = (data && typeof data[0] !== 'undefined') ? data[0] : null
 
-            // Parse Comment & Update Side Bar
-            const info = parseCommentInfo(result)
+          // If no page info detected, we have nothing to show
+          if (!page) {
+            $sidebar.innerHTML = `<i>${invalidComment}</i>`
+            return
+          }
 
-            if (info) {
-              $sidebar.innerHTML = generateSidebar(info, domain, siteID)
-              bindEvents()
-            } else {
-              $sidebar.innerHTML = '<i>No SFCC Comment Selected</i>'
-            }
+          const info = parseCommentInfo(result)
+          const location = page.location || null
+          const siteId = page.siteId || null
+          const url = new URL(location)
+          const domain = url.hostname
+
+          if (info && domain && siteId) {
+            $sidebar.innerHTML = generateSidebar(info, domain, siteId)
+            bindEvents()
+          } else {
+            $sidebar.innerHTML = `<i>${invalidComment}</i>`
           }
         }
 
         // Get Current Page URL Info
         if (browser.devtools) {
-          browser.devtools.inspectedWindow.eval(`{ window.location.href }`).then(getPageInfo, onError)
+          browser.devtools.inspectedWindow.eval(`{ const pageInfo = { location: window.location.href, siteId: window.CQuotient.siteId }; pageInfo; }`).then(getPageInfo, onError)
         }
       } else {
-        $sidebar.innerHTML = '<i>No SFCC Comment Selected</i>'
+        $sidebar.innerHTML = `<i>${invalidComment}</i>`
       }
     }
 

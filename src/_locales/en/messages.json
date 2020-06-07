@@ -50,5 +50,9 @@
   "openInIDE": {
     "message": "Open in Editor",
     "description": "Button Text for Open in Editor"
+  },
+  "invalidComment": {
+    "message": "No SFCC Comment Selected",
+    "description": "Non-SFCC Comment Block Selected"
   }
 }
