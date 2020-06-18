@@ -12,6 +12,7 @@
 - [X] Adds new `SFCC` Side Panel to `Elements` Panel
 - [X] Open ISML, Pipelines & Controllers in VS Code / Eclipse
 - [X] Open Content Slots & Assets in Business Manager
+- [X] Automatically Open Related Sites by Client ID & Site ID
 - [X] Supports Light & Dark Themes
 
 ## Installation

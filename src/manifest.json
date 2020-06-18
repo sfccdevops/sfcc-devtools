@@ -12,14 +12,9 @@
     "48": "icons/48.png",
     "128": "icons/128.png"
   },
-  "background": {
-    "page": "background.html"
-  },
-  "options_page": "options.html",
   "permissions": [
     "activeTab",
     "browsingData",
-    "notifications",
     "storage",
     "http://localhost:60606/*"
   ],
