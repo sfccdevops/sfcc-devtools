@@ -423,8 +423,8 @@
 
         if (!hasClient || !hasSite || !hasSubdomain) {
           // Clone data
-          let store = Object.assign({}, client)
-          let info = Object.assign({}, page)
+          const store = Object.assign({}, client)
+          const info = Object.assign({}, page)
 
           // Remove duplicate data
           delete info.location
@@ -437,9 +437,9 @@
           store[page.clientId][page.siteId][key] = info
 
           // Save to Local Storage
-          browser.storage.local.set(store).then(() => {}, onError);
+          browser.storage.local.set(store).then(() => {}, onError)
         }
-      }, onError);
+      }, onError)
     }
 
     // Use inspector to parse DOM and return node if Comment Block
