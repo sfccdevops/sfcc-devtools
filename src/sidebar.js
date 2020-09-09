@@ -145,6 +145,14 @@
       html = html.concat(`<a class="button" href="${assetURL}" target="_blank">${openInBM}</a>`)
     }
 
+    // This is a Page Designer Asset
+    if (props.type === 'rinclude' && props.pageId && domain) {
+      const pageDesignerURL = `https://${domain}/on/demandware.store/Sites-Site/default/ViewLdsBusinessManagerScreen-PageDesigner/#/edit/page/${props.pageId}`
+
+      html = html.concat(`<h2>${getLabel(props.pageId)}</h2>`)
+      html = html.concat(`<a class="button" href="${pageDesignerURL}" target="_blank">${openInBM}</a>`)
+    }
+
     return html
   }
 
@@ -293,6 +301,7 @@
       const contextId = getProp(comment, 'dwContextID')
       const controller = getProp(comment, 'dwIsController')
       const id = getProp(comment, 'dwContentID')
+      const pageId = getProp(comment, 'dwPageId')
       const pipelineTitle = getProp(comment, 'dwPipelineTitle')
       const pipelineUrl = getProp(comment, 'dwPipelineURL')
       const templateTitle = getProp(comment, 'dwTemplateTitle')
@@ -323,6 +332,11 @@
         sfccProps.id = id
       }
 
+      // Set SFCC ID
+      if (pageId) {
+        sfccProps.pageId = pageId
+      }
+      
       // Set SFCC Pipeline Info
       if (pipelineTitle && pipelineUrl) {
         const pipeline = pipelineTitle.split(' ')
