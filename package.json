@@ -1,6 +1,6 @@
 {
   "name": "sfcc-devtools",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.",
   "author": "Red van Workshop",
   "license": "MIT",

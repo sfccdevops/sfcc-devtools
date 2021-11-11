@@ -7,9 +7,14 @@
   const bindEvents = () => {
     let timeout
 
+    const $assetList = document.getElementById('asset-list')
+    const $assetListToggle = document.getElementById('asset-list-toggle')
     const $controller = document.getElementById('open-controller')
-    const $template = document.getElementById('open-template')
     const $error = document.getElementById('error')
+    const $sidebar = document.getElementById('sidebar')
+    const $slotList = document.getElementById('slot-list')
+    const $slotListToggle = document.getElementById('slot-list-toggle')
+    const $template = document.getElementById('open-template')
 
     const showError = (target, err) => {
       if (target && err) {
@@ -72,6 +77,55 @@
       }
     }
 
+    const toggleAssetList = evt => {
+      evt.preventDefault()
+      evt.stopImmediatePropagation()
+
+      const $target = evt.target
+
+      if (!$target) {
+        return
+      }
+
+      $target.classList.toggle('expanded')
+      $assetList.classList.toggle('collapsed')
+    }
+
+    const toggleSlotList = evt => {
+      evt.preventDefault()
+      evt.stopImmediatePropagation()
+
+      const $target = evt.target
+
+      if (!$target) {
+        return
+      }
+
+      $target.classList.toggle('expanded')
+      $slotList.classList.toggle('collapsed')
+    }
+
+    const closeDropDowns = evt => {
+      const $target = evt.target
+
+      if (!$target || $target.id !== 'sidebar') {
+        return
+      }
+
+      evt.preventDefault()
+      evt.stopImmediatePropagation()
+
+      if ($assetList && $assetListToggle) {
+        $assetListToggle.classList.remove('expanded')
+        $assetList.classList.add('collapsed')
+      }
+
+      if ($slotList && $slotListToggle) {
+        $slotList.classList.add('collapsed')
+        $slotListToggle.classList.remove('expanded')
+      }
+    }
+
     // Unbind / Bind Click events for IDE Buttons
     if ($controller) {
       $controller.removeEventListener('click', openIDE)
@@ -81,6 +135,21 @@
     if ($template) {
       $template.removeEventListener('click', openIDE)
       $template.addEventListener('click', openIDE)
+    }
+
+    if ($assetListToggle) {
+      $assetListToggle.removeEventListener('click', toggleAssetList)
+      $assetListToggle.addEventListener('click', toggleAssetList)
+    }
+
+    if ($slotListToggle) {
+      $slotListToggle.removeEventListener('click', toggleSlotList)
+      $slotListToggle.addEventListener('click', toggleSlotList)
+    }
+
+    if ($sidebar) {
+      $sidebar.removeEventListener('click', closeDropDowns)
+      $sidebar.addEventListener('click', closeDropDowns)
     }
   }
 
@@ -109,11 +178,12 @@
    * @param {string} domain
    * @param {string} siteId
    */
-  const generateSidebar = (props, domain, siteId) => {
+  const generateSidebar = (props, domain, siteId, client) => {
     let html = `<h1>${cleanTitle(props.type)}</h1>`
 
     const openInIDE = (browser.i18n) ? browser.i18n.getMessage('openInIDE') : 'Open in Editor'
     const openInBM = (browser.i18n) ? browser.i18n.getMessage('openInBM') : 'Open in Business Manager'
+    const instances = (typeof client === 'object') ? Object.keys(client) : null
 
     // This has a Pipeline or Controller
     if (props.pipeline) {
@@ -134,7 +204,22 @@
       const slotURL = `https://${domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteId}`
 
       html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
-      html = html.concat(`<a class="button" href="${slotURL}" target="_blank">${openInBM}</a>`)
+      html = html.concat(`<a class="button primary ${(instances && instances.length > 1) ? 'has-dropdown' : ''}" href="${slotURL}" target="_blank">${openInBM}</a>`)
+
+      if (instances && instances.length > 1) {
+        html = html.concat(`<a class="button dropdown" id="slot-list-toggle" data-dropdown="slot-list"><span>▾</span></a>`)
+
+        instances.sort()
+
+        html = html.concat('<div id="slot-list" class="dropdown-list collapsed"><ul>')
+
+        instances.forEach((instance, index) => {
+          const altSlotURL = `https://${client[instance].domain}/on/demandware.store/Sites-Site/default/StorefrontEditing-Slot?SlotID=${props.id}&ContextName=${context}&ContextUUID=${contextId}&Site=${siteId}`
+          html = html.concat(`<li><a class="alt ${client[instance].instanceType}" href="${altSlotURL}" target="_blank">${instances[index]}</a></li>`)
+        })
+
+        html = html.concat('</ul></div>')
+      }
     }
 
     // This is a Content Asset
@@ -142,7 +227,25 @@
       const assetURL = `https://${domain}/on/demandware.store/Sites-Site/default/ViewLibraryContent_52-Start?ContentUUID=${props.id}`
 
       html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
-      html = html.concat(`<a class="button" href="${assetURL}" target="_blank">${openInBM}</a>`)
+      html = html.concat(`<a class="button primary" href="${assetURL}" target="_blank">${openInBM}</a>`)
+
+      // TODO: Check if we actually need this bit since it might actually not work like we think
+      // html = html.concat(`<a class="button primary ${(instances && instances.length > 1) ? 'has-dropdown' : ''}" href="${assetURL}" target="_blank">${openInBM}</a>`)
+
+      // if (instances && instances.length > 1) {
+      //   html = html.concat(`<a class="button dropdown" id="asset-list-toggle" data-dropdown="asset-list"><span>▾</span></a>`)
+
+      //   instances.sort()
+
+      //   html = html.concat('<div id="asset-list" class="dropdown-list collapsed"><ul>')
+
+      //   instances.forEach((instance, index) => {
+      //     const altAssetURL = `https://${client[instance].domain}/on/demandware.store/Sites-Site/default/ViewLibraryContent_52-Start?ContentUUID=${props.id}`
+      //     html = html.concat(`<li><a class="alt ${client[instance].instanceType}" href="${altAssetURL}" target="_blank">${instances[index]}</a></li>`)
+      //   })
+
+      //   html = html.concat('</ul></div>')
+      // }
     }
 
     return html
@@ -252,9 +355,15 @@
           const url = new URL(location)
           const domain = url.hostname
 
+          // Add domain to page info before passing over
+          page.domain = url.hostname
+
           if (info && domain && siteId) {
-            $sidebar.innerHTML = generateSidebar(info, domain, siteId)
-            bindEvents()
+            browser.storage.local.get(page.clientId).then(response => {
+              const client = (response && response.hasOwnProperty(page.clientId) && response[page.clientId].hasOwnProperty(page.siteId)) ? response[page.clientId][page.siteId] : null
+              $sidebar.innerHTML = generateSidebar(info, domain, siteId, client)
+              bindEvents()
+            })
           } else {
             $sidebar.innerHTML = `<i>${invalidComment}</i>`
           }
@@ -262,16 +371,94 @@
 
         // Get Current Page URL Info
         if (browser.devtools) {
-          browser.devtools.inspectedWindow.eval(`{ const pageInfo = { location: window.location.href, siteId: window.CQuotient.siteId }; pageInfo; }`).then(getPageInfo, onError)
+          browser.devtools.inspectedWindow.eval(`{
+            const pageInfo = {
+              location: window.location.href,
+              clientId: window.CQuotient.clientId,
+              instanceType: window.CQuotient.instanceType,
+              realm: window.CQuotient.realm,
+              siteId: window.CQuotient.siteId
+            };
+            pageInfo;
+          }`).then(getPageInfo, onError)
         }
       } else {
         $sidebar.innerHTML = `<i>${invalidComment}</i>`
       }
     }
 
+    // Store Client Information if they've opened SFCC DevTools SidePanel
+    const storePageData = (data) => {
+      const page = (data && typeof data[0] !== 'undefined') ? data[0] : null
+
+      // Exit if Page is not set
+      if (!page || typeof page.location === 'undefined') {
+        return
+      }
+
+      const url = new URL(page.location)
+
+      // Exit if URL is not set
+      if (!url || typeof url.hostname === 'undefined') {
+        return
+      }
+
+      page.domain = url.hostname
+
+      // split domain for parts
+      const domain = page.domain.split('.')
+      const subdomain = (domain && domain.length > 0) ? domain[0].split('-') : null
+      const key = (subdomain && subdomain.length > 0) ? subdomain[0] : null
+
+      // Exit if key could not be set
+      if (!key) {
+        return
+      }
+
+      // Check if we've already got this client's site stored for them
+      browser.storage.local.get(page.clientId).then((client) => {
+        const hasClient = (typeof client !== 'undefined' && client.hasOwnProperty(page.clientId))
+        const hasSite = (hasClient && typeof client[page.clientId] !== 'undefined' && client[page.clientId].hasOwnProperty(page.siteId))
+        const hasSubdomain = (hasSite && typeof client[page.clientId] !== 'undefined' && typeof client[page.clientId][page.siteId] !== 'undefined' && client[page.clientId][page.siteId].hasOwnProperty(key))
+
+        if (!hasClient || !hasSite || !hasSubdomain) {
+          // Clone data
+          const store = Object.assign({}, client)
+          const info = Object.assign({}, page)
+
+          // Remove duplicate data
+          delete info.location
+          delete info.siteId
+          delete info.clientId
+
+          // Prep data for storage
+          store[page.clientId] = (hasClient) ? store[page.clientId] : {}
+          store[page.clientId][page.siteId] = (hasSite) ? store[page.clientId][page.siteId] : {}
+          store[page.clientId][page.siteId][key] = info
+
+          // Save to Local Storage
+          browser.storage.local.set(store).then(() => {}, onError)
+        }
+      }, onError)
+    }
+
     // Use inspector to parse DOM and return node if Comment Block
     if (browser.devtools) {
-      browser.devtools.inspectedWindow.eval(`{ const node = $0; node.nodeType === Node.COMMENT_NODE && node.nodeValue; }`).then(selectedElement, onError)
+      browser.devtools.inspectedWindow.eval(`{
+        const node = $0;
+        node.nodeType === Node.COMMENT_NODE && node.nodeValue;
+      }`).then(selectedElement, onError)
+
+      browser.devtools.inspectedWindow.eval(`{
+        const pageInfo = {
+          location: window.location.href,
+          clientId: window.CQuotient.clientId,
+          instanceType: window.CQuotient.instanceType,
+          realm: window.CQuotient.realm,
+          siteId: window.CQuotient.siteId
+        };
+        pageInfo;
+      }`).then(storePageData, onError)
     }
   }
 
