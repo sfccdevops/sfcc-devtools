@@ -228,24 +228,14 @@
 
       html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
       html = html.concat(`<a class="button primary" href="${assetURL}" target="_blank">${openInBM}</a>`)
+    }
 
-      // TODO: Check if we actually need this bit since it might actually not work like we think
-      // html = html.concat(`<a class="button primary ${(instances && instances.length > 1) ? 'has-dropdown' : ''}" href="${assetURL}" target="_blank">${openInBM}</a>`)
+    // This is a Product
+    if (props.type === 'product' && props.id && domain) {
+      const assetURL = `https://${domain}/on/demandware.store/Sites-Site/default/ViewProduct_52-Edit?ContentUUID=${props.id}`
 
-      // if (instances && instances.length > 1) {
-      //   html = html.concat(`<a class="button dropdown" id="asset-list-toggle" data-dropdown="asset-list"><span>▾</span></a>`)
-
-      //   instances.sort()
-
-      //   html = html.concat('<div id="asset-list" class="dropdown-list collapsed"><ul>')
-
-      //   instances.forEach((instance, index) => {
-      //     const altAssetURL = `https://${client[instance].domain}/on/demandware.store/Sites-Site/default/ViewLibraryContent_52-Start?ContentUUID=${props.id}`
-      //     html = html.concat(`<li><a class="alt ${client[instance].instanceType}" href="${altAssetURL}" target="_blank">${instances[index]}</a></li>`)
-      //   })
-
-      //   html = html.concat('</ul></div>')
-      // }
+      html = html.concat(`<h2>${getLabel(props.id)}</h2>`)
+      html = html.concat(`<a class="button primary" href="${assetURL}" target="_blank">${openInBM}</a>`)
     }
 
     // This is a Page Designer Asset

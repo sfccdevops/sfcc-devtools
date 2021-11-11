@@ -37,6 +37,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 ```php
 <!-- dwMarker="content" dwContentID="8a6c155cee595360a96c5ac853" -->
+<!-- dwMarker="product" dwContentID="8a6c155cee595360a96c5ac853" -->
 <!-- dwMarker="decorator" dwTemplateTitle="/default/common/layout/page.isml (app_client_base)" dwTemplateURL="http://localhost:60606/target=/app_client_base/cartridge/templates/default/common/layout/page.isml" -->
 <!-- dwMarker="linclude" dwTemplateTitle="/default/components/header/pageHeader.isml (app_client_base)" dwTemplateURL="http://localhost:60606/target=/app_client_base/cartridge/templates/default/components/header/pageHeader.isml" -->
 <!-- dwMarker="link" dwPipelineTitle="Login-Show (app_client_base)" dwIsController="true" dwPipelineURL="http://localhost:60606/target=/app_client_base/cartridge/controllers/Login.js&amp;start=Show" -->
