@@ -509,11 +509,11 @@
         sfccProps.id = id
       }
 
-      // Set SFCC ID
+      // Set SFCC Page ID
       if (pageId) {
         sfccProps.pageId = pageId
       }
-      
+
       // Set SFCC Pipeline Info
       if (pipelineTitle && pipelineUrl) {
         const pipeline = pipelineTitle.split(' ')
