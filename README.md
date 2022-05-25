@@ -1,10 +1,8 @@
-#  ![icon](src/icons/48.png) SFCC DevTools
+![Logo](https://sfccdevops.s3.amazonaws.com/logo-128.png "Logo")
 
 > Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.
 
 # ![sfcc-devtool-demo](https://sfcc-devtools.s3.us-east-1.amazonaws.com/sfcc-devtool-demo.gif?v=1.0.0)
-
-[Red Van Workshop](https://redvanworkshop.com) is a Salesforce Commerce Cloud Certified Partner.  We built this Extension to connect the Browsers Web Inspector to VS Code, Eclipse & Business Manager. We hope you will find it as useful as we do, and if you want to help make it better, we'd love to hear from you.
 
 ## Features
 
@@ -52,7 +50,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 <details><summary>Add to Google Chrome</summary>
 
-1. Download [Webkit Extension](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools-webkit.crx)
+1. Download [Webkit Extension](https://github.com/sfccdevops/sfcc-devtools/raw/master/dist/sfcc-devtools-webkit.crx)
 2. Click **Keep** when prompted to download the file
 3. Go to the following URL in a new Google Chrome tab:  `chrome://extensions`
 4. In the top right corner, Enable **Developer Mode**
@@ -62,7 +60,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 <details><summary>Add to Firefox</summary>
 
-1. Download [Firefox Addon](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools-firefox.zip)
+1. Download [Firefox Addon](https://github.com/sfccdevops/sfcc-devtools/raw/master/dist/sfcc-devtools-firefox.zip)
 2. Open Firefox
 3. Go to the following URL in a new tab:  `about:debugging#/runtime/this-firefox`
 4. In the top right corner, Click **Load Temporary Add-on...**
@@ -72,7 +70,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 
 <details><summary>Add to Opera</summary>
 
-1. Download [Webkit Extension](https://github.com/redvanworkshop/sfcc-devtools/raw/master/dist/sfcc-devtools-webkit.crx)
+1. Download [Webkit Extension](https://github.com/sfccdevops/sfcc-devtools/raw/master/dist/sfcc-devtools-webkit.crx)
 2. Go to the following URL in a new Opera tab:  `chrome://extensions`
 3. In the top right corner, Enable **Developer Mode**
 4. Drag and Drop `./dist/sfcc-devtools-webkit.crx` file into Extension page
@@ -87,7 +85,7 @@ Now you're ready to go. In your `Elements`/`Inspector` Tab, click on an SFCC com
 <details><summary>Build Extension</summary>
 
 ```bash
-git clone git@github.com:redvanworkshop/sfcc-devtools.git
+git clone git@github.com:sfccdevops/sfcc-devtools.git
 cd sfcc-devtools
 npm install
 npm run pack
@@ -147,6 +145,6 @@ npm run pack
 
 
 Disclaimer
-===
+---
 
-The trademarks and product names of Salesforce®, including the mark Salesforce®, are the property of Salesforce.com. Red Van Workshop is not affiliated with Salesforce.com, nor does Salesforce.com sponsor or endorse the Red Van Workshop products or website. The use of the Salesforce® trademark on this project does not indicate an endorsement, recommendation, or business relationship between Salesforce.com and Red Van Workshop.
+> The trademarks and product names of Salesforce®, including the mark Salesforce®, are the property of Salesforce.com. SFCC DevOps is not affiliated with Salesforce.com, nor does Salesforce.com sponsor or endorse the SFCC DevOps products or website. The use of the Salesforce® trademark on this project does not indicate an endorsement, recommendation, or business relationship between Salesforce.com and SFCC DevOps.
