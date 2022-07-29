@@ -1,7 +1,7 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "__MSG_extensionDescription__",
   "author": "SFCC DevOps",
   "devtools_page": "devtools.html",
@@ -13,10 +13,12 @@
     "128": "icons/128.png"
   },
   "permissions": [
-    "activeTab",
-    "browsingData",
-    "storage",
-    "http://localhost:60606/*"
+    "storage"
   ],
-  "content_security_policy": "script-src 'self' http://localhost:60606; object-src 'self'"
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' http://localhost:60606; object-src 'self';"
+  },
+  "host_permissions": [
+    "http://localhost:60606/*"
+  ]
 }

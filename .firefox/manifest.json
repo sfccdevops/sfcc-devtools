@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "__MSG_extensionDescription__",
   "author": "SFCC DevOps",
   "devtools_page": "devtools.html",
@@ -13,8 +13,8 @@
     "128": "icons/128.png"
   },
   "permissions": [
-    "activeTab",
-    "browsingData",
-    "storage"
-  ]
+    "storage",
+    "http://localhost/*"
+  ],
+  "content_security_policy": "script-src 'self' http://localhost:60606; object-src 'self';"
 }

@@ -37,12 +37,6 @@
         return
       }
 
-      // Check if this is FireFox as it will not allow AJAX calls to `http://localhost`
-      if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-        window.open($target.href, 'ide')
-        return
-      }
-
       // For Chrome we can do a little more elegant opening of files
       $target.classList.add('loading')
       $target.classList.remove('error')
@@ -183,7 +177,7 @@
 
     const openInIDE = (browser.i18n) ? browser.i18n.getMessage('openInIDE') : 'Open in Editor'
     const openInBM = (browser.i18n) ? browser.i18n.getMessage('openInBM') : 'Open in Business Manager'
-    const instances = (typeof client === 'object') ? Object.keys(client) : null
+    const instances = (client && typeof client === 'object') ? Object.keys(client) : null
 
     // This has a Pipeline or Controller
     if (props.pipeline) {

@@ -1,6 +1,6 @@
 {
-  "name": "sfcc-devtools",
-  "version": "1.1.0",
+  "name": "@sfccdevops/sfcc-devtools",
+  "version": "1.1.1",
   "description": "Support Browser Interaction with VS Code, Eclipse, and SFCC Business Manager via DevTools Web Inspector.",
   "author": "SFCC DevOps",
   "license": "MIT",
@@ -23,6 +23,13 @@
     "devtools",
     "web-inspector"
   ],
+  "contributors": [
+    {
+      "name": "Peter Schmalfeldt",
+      "email": "me@peterschmalfeldt.com",
+      "url": "https://peterschmalfeldt.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/sfccdevops/sfcc-devtools.git"
@@ -41,13 +48,13 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "crx": "^5.0.1",
-    "eslint": "^8.2.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-standard": "^5.0.0",
     "jszip-cli": "^1.4.24"
   }
