@@ -19,7 +19,7 @@
 
 [![Install Chrome](https://img.shields.io/badge/Install-Chrome-orange.svg?style=for-the-badge)](https://chrome.google.com/webstore/detail/sfcc-devtools/gdgdeiakmgocieipdpdaidanjbcchdka)
 [![Install Firefox](https://img.shields.io/badge/Install-Firefox-red.svg?style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/sfcc-devtools/)
-[![Install Edge](https://img.shields.io/badge/Install-Edge-blue.svg?style=for-the-badge)](https://addons.mozilla.org/en-US/firefox/addon/sfcc-devtools/)
+[![Install Edge](https://img.shields.io/badge/Install-Edge-blue.svg?style=for-the-badge)](https://microsoftedge.microsoft.com/addons/detail/sfcc-devtools/ngabmfehfcfkmiffgfigmfhghfgognle)
 
 #### Once Installed:
 
